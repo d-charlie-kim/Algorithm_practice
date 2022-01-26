@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int n, m;
-int	haha[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+int	save_nums[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 void	printing(int *nums)
 {
@@ -23,9 +23,9 @@ void	recursive(int *nums, int count)
 	}
 	for (int i = 1; i <= n; i++)
 	{
-		if (haha[i] >= nums[count - 1])
+		if (save_nums[i] >= nums[count - 1])
 		{
-			nums[count] = haha[i];
+			nums[count] = save_nums[i];
 			recursive(nums, count + 1);
 		}
 	}
@@ -39,11 +39,11 @@ void	check_sorting(void)
 	{
 		for (int j = 1; j <= n; j++)
 		{
-			if (haha[j - 1] > haha[j])
+			if (save_nums[j - 1] > save_nums[j])
 			{
-				temp = haha[j - 1];
-				haha[j - 1] = haha[j];
-				haha[j] = temp;
+				temp = save_nums[j - 1];
+				save_nums[j - 1] = save_nums[j];
+				save_nums[j] = temp;
 			}
 		}
 	}
@@ -55,11 +55,11 @@ int	main(void)
 
 	scanf ("%d%d", &n, &m);
 	for (int i = 0; i < n; i++)
-		scanf("%d", &haha[i]);
+		scanf("%d", &save_nums[i]);
 	check_sorting();
 	for (int i = 1; i <= n; i++)
 	{
-		nums[0] = haha[i];
+		nums[0] = save_nums[i];
 		recursive(nums, 1);
 	}
 	return (0);

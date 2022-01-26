@@ -14,7 +14,7 @@ void	printing(int *answer_nums)
 		printf("\n");
 }
 
-void	recursive(int *answer_nums, int *visit, int *double_check, int count)
+void	recursive(int *answer_nums, int *double_check, int count)
 {
 	if (count == m)
 	{
@@ -23,19 +23,17 @@ void	recursive(int *answer_nums, int *visit, int *double_check, int count)
 	}
 	for (int i = 1; i <= n; i++)
 	{
-		if (visit[i] == 0 || double_check[i] > 0)
+		if (save_nums[i] >= answer_nums[count - 1])
 		{
-			visit[i] = 1;
 			answer_nums[count] = save_nums[i];
-			if (visit[i] != 0 && double_check[i] > 0)
+			if (double_check[i] > 0)
 			{
 				double_check[i]--;
-				recursive(answer_nums, visit, double_check, count + 1);
+				recursive(answer_nums, double_check, count + 1);
 				double_check[i]++;
 			}
 			else
-				recursive(answer_nums, visit, double_check, count + 1);
-			visit[i] = 0;
+				recursive(answer_nums, double_check, count + 1);
 		}
 	}
 }
@@ -64,7 +62,6 @@ void	check_sorting(int *double_check)
 int	main(void)
 {
 	int answer_nums[9] = {0, 0, 0, 0, 0, 0, 0, 0};
-	int	visit[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 	int	double_check[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 	scanf ("%d%d", &n, &m);
@@ -88,16 +85,14 @@ int	main(void)
 	for (int i = 1; i <= n; i++)
 	{
 		answer_nums[0] = save_nums[i];
-		visit[i] = 1;
 		if (double_check[i] > 0)
 		{
 			double_check[i]--;
-			recursive(answer_nums, visit, double_check, 1);
+			recursive(answer_nums, double_check, 1);
 			double_check[i]++;
 		}
 		else
-			recursive(answer_nums, visit, double_check, 1);
-		visit[i] = 0;
+			recursive(answer_nums, double_check, 1);
 	}
 	return (0);
 }

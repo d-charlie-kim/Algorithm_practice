@@ -23,7 +23,7 @@ void	recursive(int *answer_nums, int *visit, int *double_check, int count)
 	}
 	for (int i = 1; i <= n; i++)
 	{
-		if (visit[i] == 0 || double_check[i] > 0)
+		if ((visit[i] == 0 || double_check[i] > 0) && save_nums[i] >= answer_nums[count - 1])
 		{
 			visit[i] = 1;
 			answer_nums[count] = save_nums[i];
