@@ -31,7 +31,7 @@ void recursive(long long length, long long width, long long height, int index)
 		long long total = length * width * height;
 		long long lastSize = std::pow(coinSize[1], 3);
 
-		if ((total % lastSize) == 0 && total < (lastSize * coinCount[1]))
+		if ((total % lastSize) == 0 && total <= (lastSize * coinCount[1]))
 		{
 			answer += (total / lastSize);
 			coinCount[1] -= (total / lastSize);
@@ -46,13 +46,9 @@ void recursive(long long length, long long width, long long height, int index)
 		answer += 1;
 		coinCount[index] -= 1;
 
-		recursive(length - coinSize[index], coinSize[index], coinSize[index], index);
-		recursive(coinSize[index], width - coinSize[index], coinSize[index], index);
-		recursive(length - coinSize[index], width - coinSize[index], coinSize[index], index);
-		recursive(length - coinSize[index], coinSize[index], height - coinSize[index], index);
-		recursive(coinSize[index], width - coinSize[index], height - coinSize[index], index);
+		recursive(length, width - coinSize[index], height, index);
+		recursive(length - coinSize[index], coinSize[index], height, index);
 		recursive(coinSize[index], coinSize[index], height - coinSize[index], index);
-		recursive(length - coinSize[index], width - coinSize[index], height - coinSize[index], index);
 	}
 	else
 		recursive(length, width, height, index - 1);
@@ -70,6 +66,9 @@ void output()
 
 int main()
 {
+	std::cin.tie(NULL);
+	std::ios::sync_with_stdio(false);
+
 	input();
 	solve();
 	output();
