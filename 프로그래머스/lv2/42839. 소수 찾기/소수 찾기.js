@@ -1,11 +1,11 @@
 let answer = 0;
 const storage = [];
 
-function isPrime(num) { // 소수 판단
+function isPrime(num) {
 	if (storage.includes(num) || num < 2)
 		return 0;
 
-	for (let i = 2; i <= Math.sqrt(num); i++) {  // 제곱근까지 나눠지는 수 판단 (등호 안 넣고 < 하면 안됩니다.)
+	for (let i = 2; i <= Math.sqrt(num); i++) {
 		if (num % i == 0)
 			return 0;
 	}
