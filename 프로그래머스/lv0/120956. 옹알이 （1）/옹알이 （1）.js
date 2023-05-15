@@ -1,13 +1,23 @@
 function checking(word)
 {
-    const cand = ['aya', 'ye', 'woo', 'ma'];
     let count = 0;
     
-    for (const x of cand) {
-        let index = word.indexOf(x);
-        if (index != -1)
-            count += x.length;
-    }
+    let index = word.indexOf("aya");
+    if (index != -1)
+        count += 3;
+    
+    index = word.indexOf("ye");
+    if (index != -1)
+        count += 2;
+    
+    index = word.indexOf("woo");
+    if (index != -1)
+        count += 3;
+    
+    index = word.indexOf("ma");
+    if (index != -1)
+        count += 2;
+
     if (count == word.length)
         return true;
     return false;
