@@ -26,8 +26,8 @@ function solution(number, k) {
   const arr = [];
 
   for (let i = 0; i < number.length; i++) {
-    while (k > 0 && arr.length > 0 && arr[arr.length - 1] < number[i]) {
-      //k개의 수를 제거할 동안
+    while (k > 0 && arr.length > 0 && arr[arr.length - 1] < number[i])
+    {
       arr.pop();
       k--;
     }
