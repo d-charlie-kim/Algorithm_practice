@@ -7,8 +7,8 @@ function solution(n, words) {
             answer[0] = (i + 1) % n === 0 ? n : (i + 1) % n;
             answer[1] = Math.ceil((i + 1) / n);
             break;
-}
-}
+        }
+    }
 
     return answer;
 }
