@@ -1,27 +1,34 @@
-function dfs(idx, visited, computers) {
-  const queue = [idx];
-
-  while (queue.length) {
-    const newCom = queue.shift();
-    computers[newCom].forEach((el, i) => {
-      if (el === 1 && i !== newCom && !visited.has(i)) {
-        queue.push(i);
-        visited.add(i);
-      }
-    });
-  }
-}
-
 function solution(n, computers) {
-  const visited = new Set();
-  let count = 0;
-
-  for (let i = 0; i < n; i++) {
-    if (!visited.has(i)) {
-      count += 1;
-      visited.add(i);
-      dfs(i, visited, computers);
+    const visited = new Set();
+    let answer =0
+    for(let i = 0; i < n ; i++) {
+        for (let j = 0; j < n; j++) {
+            if(computers[i][j]===1 && !visited.has(i + ','+ j)) {
+               answer += dfs(i,j,computers,visited)
+            }
+        }
+        
     }
-  }
-  return count;
+  return answer
 }
+
+function dfs(i,j,computers,visited) {
+    const stack = [i];
+    let count = 1
+    
+    
+    while (stack.length) {
+        const m = stack.pop()
+        for (let k=0; k<computers.length; k++) {
+            if(computers[m][k]===1 && !visited.has(m+","+k)){
+                stack.push(k)
+                visited.add(m+','+k);
+                
+            }
+        }
+        
+    }
+    return count
+}
+
+
